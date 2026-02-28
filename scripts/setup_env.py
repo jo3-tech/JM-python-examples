@@ -8,6 +8,8 @@ import sys
 from pathlib import Path
 
 def main():
+    """Main function to setup the environment and install requirements."""
+
     # Setup directories.
     project_dir = Path.cwd()
     venv_dir = project_dir / ".venv"
@@ -16,7 +18,8 @@ def main():
     # Create venv.
     print("\n")
     print(f"...Creating virtual environment in: {venv_dir}...\n")
-    subprocess.check_call([sys.executable, "-m", "venv", str(venv_dir)]) # python -m venv .venv
+    # python -m venv .venv
+    subprocess.check_call([sys.executable, "-m", "venv", str(venv_dir)])
 
     # Determine python inside the venv.
     if os.name == "nt":
@@ -25,12 +28,14 @@ def main():
         python_exe = venv_dir / "bin" / "python"
 
     # Upgrade pip using python -m pip.
-    subprocess.check_call([str(python_exe), "-m", "pip", "install", "--upgrade", "pip"]) # python -m pip install --upgrade pip
+    # python -m pip install --upgrade pip
+    subprocess.check_call([str(python_exe), "-m", "pip", "install", "--upgrade", "pip"])
 
     # Install requirements
     if requirements.exists():
         print(f"...Installing requirements from: {requirements}...\n")
-        subprocess.check_call([str(python_exe), "-m", "pip", "install", "-r", str(requirements)]) # python -m pip install -r requirements.txt
+        # python -m pip install -r requirements.txt
+        subprocess.check_call([str(python_exe), "-m", "pip", "install", "-r", str(requirements)])
     else:
         print("...No requirements.txt found — skipping dependency installation...\n")
 
