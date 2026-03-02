@@ -17,9 +17,10 @@ def main():
     print("hello")
     print("\n")
     rrr_planar_robot.verify_pinocchio()
-    link1_length_mm = 150
-    link2_length_mm = 100
-    robot = rrr_planar_robot.RRRPlanarRobot(link1_length_mm, link2_length_mm)
+    link1_length_mm = 150.0
+    link2_length_mm = 100.0
+    link3_length_mm = 0.0
+    robot = rrr_planar_robot.RRRPlanarRobot(link1_length_mm, link2_length_mm, link3_length_mm)
     robot.print_from_robot()
 
 if __name__ == "__main__":
