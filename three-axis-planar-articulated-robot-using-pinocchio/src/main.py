@@ -9,18 +9,35 @@ Main application entry point.
 Initialises the program and starts the top level application control flow.
 """
 
+import math
+import numpy as np
 import rrr_planar_robot
 
 def main():
     """The main application entry point that starts the application."""
 
-    print("hello")
-    print("\n")
-    rrr_planar_robot.verify_pinocchio()
+    #rrr_planar_robot.verify_pinocchio()
+
+    # Robot link lengths (mm).
     link1_length_mm = 150.0
     link2_length_mm = 100.0
     link3_length_mm = 0.0
+
+    # Robot positions in radians (rad).
+    # Zero position.
+    zero_position_rad = np.array([0, 0, 0])
+    # Soft home position.
+    #                                 [  60,         60,      0]    (deg).
+    soft_home_position_rad = np.array([math.pi/3, -math.pi/3, 0]) # (rad).
+
+    # The robots kinematic/dynamic model.
     robot = rrr_planar_robot.RRRPlanarRobot(link1_length_mm, link2_length_mm, link3_length_mm)
+
+    print("\n...Three axis articulated robot...\n\n")
+
+    # Display the robot links. ***Can Pinocchio print the POE ohmega, v and M values?***
+    print("...Robot links...\n")
+
     robot.print_from_robot()
 
 if __name__ == "__main__":

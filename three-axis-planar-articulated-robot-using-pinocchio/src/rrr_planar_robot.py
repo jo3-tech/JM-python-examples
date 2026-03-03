@@ -48,8 +48,8 @@ class RRRPlanarRobot():
         ee_parent_id = j3_id
         ee_placement = pin.SE3(np.eye(3), np.array([link3_length, 0.0, 0.0])) # pin.SE3(np.eye(3), np.zeros(3)) OR pin.SE3.Identity() if link3_length = 0 i.e., at joint 3 origin.
         ee_frame_type = pin.FrameType.OP_FRAME
-        ee_frame_id = pin.Frame('end_effector', ee_parent_id, 0, ee_placement, ee_frame_type)
-        self.model.addFrame(ee_frame_id)
+        ee_frame = pin.Frame('end_effector', ee_parent_id, 0, ee_placement, ee_frame_type)
+        self.model.addFrame(ee_frame)
 
         self.data = self.model.createData()
 
