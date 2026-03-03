@@ -35,10 +35,11 @@ def main():
 
     print("\n...Three axis articulated robot...\n\n")
 
-    # Display the robot links. ***Can Pinocchio print the POE ohmega, v and M values?***
-    print("...Robot links...\n")
+    # Display the robot joint placements.
+    print("...Robot joint placements...\n")
+    robot.print_joint_placements()
 
-    robot.print_from_robot()
+    # Set the initial robot joint angles to the zero position.
 
 if __name__ == "__main__":
     main()
