@@ -39,7 +39,8 @@ def main():
     print("...Robot joint placements...\n")
     robot.print_joint_placements()
 
-    # Set the initial robot joint angles to the zero position.
+    # Display the robot pose/transformation matrix for the zero position.
+    print("...Transformation matrix in the zero position...")
 
 if __name__ == "__main__":
     main()

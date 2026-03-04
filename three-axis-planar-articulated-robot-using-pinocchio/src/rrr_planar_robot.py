@@ -25,7 +25,8 @@ class RRRPlanarRobot():
     def __init__(self, link1_length, link2_length, link3_length):
         print("Creating robot model.\n")
 
-        self.no_of_joints = 3
+        # Model.
+
         self.model = pin.Model()
 
         # Joint 1: Revolute about y-axis at origin.
@@ -53,6 +54,8 @@ class RRRPlanarRobot():
         ee_frame = pin.Frame('end_effector', ee_parent_id, 0, ee_placement, ee_frame_type)
         self.ee_frame_id = self.model.addFrame(ee_frame)
 
+        # Data.
+
         self.data = self.model.createData()
 
     def print_joint_placements(self) -> None :
@@ -62,3 +65,9 @@ class RRRPlanarRobot():
             print("\nJoint ", j_id, ":\n", self.model.jointPlacements[j_id])
         #print("EE pose:\n", self.data.oMf[self.ee_frame_id])
         print("\n")
+
+    def print_end_effector_Tm(self, q) -> None :
+        """Print the end-effector pose/transformation matrix for a given joint configuration."""
+        pin.forwardKinematics(self.model, self.data, q)
+        pin.updateFramePlacements(self.model, self.data)
+        print("\nEnd-effector Tm:\n", self.data.oMf[self.ee_frame_id])
