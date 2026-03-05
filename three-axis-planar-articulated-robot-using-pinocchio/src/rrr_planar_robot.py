@@ -60,10 +60,9 @@ class RRRPlanarRobot():
 
     def print_joint_placements(self) -> None :
         """Print each joint placement in the chain/series."""
-        print("\nNo. of joints = \n", self.no_of_joints)
+        print("\nNo. of joints = \n", self.model.nq)
         for j_id in [self.j1_id, self.j2_id, self.j3_id]:
             print("\nJoint ", j_id, ":\n", self.model.jointPlacements[j_id])
-        #print("EE pose:\n", self.data.oMf[self.ee_frame_id])
         print("\n")
 
     def print_end_effector_Tm(self, q) -> None :
@@ -71,3 +70,4 @@ class RRRPlanarRobot():
         pin.forwardKinematics(self.model, self.data, q)
         pin.updateFramePlacements(self.model, self.data)
         print("\nEnd-effector Tm:\n", self.data.oMf[self.ee_frame_id])
+        print("\n")

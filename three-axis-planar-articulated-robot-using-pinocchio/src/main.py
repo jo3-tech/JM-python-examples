@@ -23,12 +23,12 @@ def main():
     link2_length_mm = 100.0
     link3_length_mm = 0.0
 
-    # Robot positions in radians (rad).
+    # Robot configurations in radians (rad).
     # Zero position.
-    zero_position_rad = np.array([0, 0, 0])
+    zero_q_rad = np.array([0, 0, 0])
     # Soft home position.
     #                                 [  60,         60,      0]    (deg).
-    soft_home_position_rad = np.array([math.pi/3, -math.pi/3, 0]) # (rad).
+    soft_home_q_rad = np.array([math.pi/3, -math.pi/3, 0]) # (rad).
 
     # The robots kinematic/dynamic model.
     robot = rrr_planar_robot.RRRPlanarRobot(link1_length_mm, link2_length_mm, link3_length_mm)
@@ -40,7 +40,8 @@ def main():
     robot.print_joint_placements()
 
     # Display the robot pose/transformation matrix for the zero position.
-    print("...Transformation matrix in the zero position...")
+    print("...End-effector transformation matrix in the zero position...")
+    robot.print_end_effector_Tm(zero_q_rad)
 
 if __name__ == "__main__":
     main()
