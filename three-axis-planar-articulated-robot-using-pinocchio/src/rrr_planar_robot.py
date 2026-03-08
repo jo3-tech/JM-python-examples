@@ -9,11 +9,11 @@ Robot Model class.
 Class that handles creation of the robot model and it's operations.
 """
 
+from typing import Annotated
 import math
 import pinocchio as pin
 import numpy as np
 from numpy.typing import NDArray
-from typing import Annotated
 
 def verify_pinocchio():
     """Verify Pinocchio library is installed."""
@@ -38,11 +38,25 @@ class RRRPlanarRobot():
         j1_placement = pin.SE3(np.eye(3), np.zeros(3)) # pin.SE3.Identity()
         self.j1_id = self.model.addJoint(j1_parent_id, j1_model, j1_placement, 'joint1')
 
+        # Frame at end of link 1.
+        #l1_frame_parent_id = self.j1_id
+        #l1_frame_placement = pin.SE3(np.eye(3), np.array([link1_length, 0.0, 0.0]))
+        #l1_frame_type = pin.FrameType.BODY
+        #l1_frame = pin.Frame('link1_frame', l1_frame_parent_id, 0, l1_frame_placement, l1_frame_type)
+        #self.j1_frame_id = self.model.addFrame(l1_frame)
+
         # Joint 2: Revolute about y-axis at end of link 1.
         j2_parent_id = self.j1_id
         j2_model = pin.JointModelRZ()
         j2_placement = pin.SE3(np.eye(3), np.array([link1_length, 0.0, 0.0]))
         self.j2_id = self.model.addJoint(j2_parent_id, j2_model, j2_placement, 'joint2')
+
+        # Frame at end of link 2.
+        #l2_frame_parent_id = self.j2_id
+        #l2_frame_placement = pin.SE3(np.eye(3), np.array([link2_length, 0.0, 0.0]))
+        #l2_frame_type = pin.FrameType.BODY
+        #l2_frame = pin.Frame('link2_frame', l2_frame_parent_id, 0, l2_frame_placement, l2_frame_type)
+        #self.j2_frame_id = self.model.addFrame(l2_frame)
 
         # Joint 3: Revolute about y-axis at end of link 2.
         j3_parent_id = self.j2_id
